@@ -17,7 +17,6 @@ function HomePage() {
         // Hint 2: Rufe die Funktion mit einer Zahl auf (wie viele Pokemon?)
         // Hint 3: Speichere das Ergebnis mit setPokemonList()
         // Hint 4: Vergiss nicht "await" - es ist eine async-Funktion!
-        
       } catch (error) {
         console.error("Fehler beim Laden:", error);
       } finally {
@@ -61,15 +60,15 @@ function HomePage() {
               />
               <p className="pokemon-id">#{pokemon.id}</p>
 
-              {/* 🎯 AUFGABE: Zeige auch den Typ
-                  Hint: 
-                  <div className="pokemon-types">
-                    {pokemon.types.map((type, in des Pokemon
+              {/* 🎯 AUFGABE: Zeige auch den Typ des Pokemon
                   Frage: Wie zeigt man die Typen im PokemonCard.js?
                   Hint 1: Schau in components/PokemonCard.js wie Typen angezeigt werden
                   Hint 2: Du brauchst ein <div> mit className="pokemon-types"
                   Hint 3: Nutze pokemon.types.map() um durch alle Typen zu loopen
                   Hint 4: Jeder Typ braucht einen <span> mit der richtigen CSS-Klasse
+              */}
+            </div>
+          </Link>
         ))}
       </div>
     </div>

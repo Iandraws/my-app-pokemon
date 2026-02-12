@@ -16,13 +16,12 @@ function PokemonDetailPage() {
         // Frage 1: Welche Funktion holt ein einzelnes Pokemon? (Schau im Import!)
         // Frage 2: Was braucht diese Funktion als Parameter?
         // Frage 3: Wie speichert man das Ergebnis? (Welcher State?)
-        // 
+        //
         // 📝 Schritte:
         // 1. Rufe die richtige Service-Funktion auf
         // 2. Vergiss nicht "await" (warum ist das wichtig?)
         // 3. Speichere das Ergebnis in einer Variable
         // 4. Setze den State mit dem Ergebnis
-        
       } catch (error) {
         console.error("Fehler beim Laden:", error);
       } finally {
@@ -68,7 +67,12 @@ function PokemonDetailPage() {
           <p>
             <strong>Größe:</strong> {pokemon.height / 10} m
           </p>
-          <p>Frage: Wie hast du die Typen auf der HomePage angezeigt?
+          <p>
+            <strong>Gewicht:</strong> {pokemon.weight / 10} kg
+          </p>
+
+          {/* 🎯 AUFGABE 2: Typen anzeigen
+              Frage: Wie hast du die Typen auf der HomePage angezeigt?
               
               Schritt 1: Erstelle ein <div> mit className "pokemon-types"
               Schritt 2: Nutze .map() um durch pokemon.types zu loopen
