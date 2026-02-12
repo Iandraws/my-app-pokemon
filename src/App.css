@@ -1,38 +1,365 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🎯 AUFGABE 7: Hintergrundfarbe ändern
+   Hint: Ändere die beiden Farben im linear-gradient
+   Probiere: #ff6b6b, #4ecdc4, #95e1d3, #f39c12, #e74c3c
+*/
 .App {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pokemon-container {
+  max-width: 1400px;
+  margin: 0 auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: bounce 2s ease-in-out infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-form {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.search-input {
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  width: 70%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: transform 0.2s;
+}
+
+.search-input:focus {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-button {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  background-color: #ffd700;
+  color: #333;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.search-button:hover {
+  background-color: #ffed4e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-button:active {
+  transform: translateY(0);
+}
+
+.loading {
   color: white;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
-@keyframes App-logo-spin {
+.error {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-size: 1.1rem;
+}
+
+/* 🎯 AUFGABE 8: Card-Ecken stylen
+   Hint: Ändere border-radius (aktuell: 20px)
+   Probiere: 5px (eckig), 10px (leicht rund), 50px (sehr rund)
+*/
+/* 🎯 AUFGABE 11: Card-Hintergrundfarbe ändern
+   Hint: Ändere background von white zu einer anderen Farbe
+   Probiere: #f0f0f0, #e8f4f8, #fff9e6, #ffeaa7
+*/
+/* 🎯 AUFGABE 13: Schatten der Card verstärken
+   Hint: Ändere die Zahlen in box-shadow (aktuell: 0 10px 30px)
+   Größere Zahlen = stärkerer Schatten
+   Probiere: 0 20px 40px rgba(0, 0, 0, 0.5)
+*/
+.pokemon-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.5s ease-out;
+  /* 🎯 AUFGABE 9: Pokemon-Name Farbe ändern
+   Hint: Ändere color (aktuell: #333)
+   Probiere: #e74c3c (rot), #3498db (blau), #2ecc71 (grün), #9b59b6 (lila)
+*/
+  /* 🎯 AUFGABE 15: Text-Schatten für Pokemon-Name
+   Hint: Füge unter color diese Zeile hinzu:
+   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+*/
+}
+
+@keyframes slideIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+/* 🎯 AUFGABE 10: Pokemon-Bild größer machen
+   Hint: Ändere width und height (aktuell: 200px)
+   Probiere: 250px, 300px oder 350px
+*/
+
+.pokemon-name {
+  font-size: 2.5rem;
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.pokemon-image {
+  width: 200px;
+  height: 200px;
+  margin: 20px 0;
+  transition: transform 0.3s;
+}
+
+.pokemon-image:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.pokemon-info {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.pokemon-info p {
+  /* 🎯 AUFGABE 12: Typ-Badges größer machen
+   Hint: Ändere padding und font-size
+   Aktuell: padding: 8px 16px, font-size: 0.9rem
+   Probiere: padding: 12px 24px, font-size: 1.2rem
+*/
+  margin: 10px 0;
+}
+
+.pokemon-types {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Pokemon Typ-Farben */
+.fire {
+  background-color: #f08030;
+}
+.water {
+  background-color: #6890f0;
+}
+.grass {
+  background-color: #78c850;
+}
+.electric {
+  background-color: #f8d030;
+}
+.psychic {
+  background-color: #f85888;
+}
+.ice {
+  background-color: #98d8d8;
+}
+.dragon {
+  background-color: #7038f8;
+}
+.dark {
+  background-color: #705848;
+}
+.fairy {
+  background-color: #ee99ac;
+}
+.normal {
+  background-color: #a8a878;
+}
+.fighting {
+  background-color: #c03028;
+}
+.flying {
+  background-color: #a890f0;
+}
+.poison {
+  background-color: #a040a0;
+}
+.ground {
+  background-color: #e0c068;
+}
+.rock {
+  background-color: #b8a038;
+}
+.bug {
+  background-color: #a8b820;
+}
+.ghost {
+  background-color: #705898;
+}
+.steel {
+  background-color: #b8b8d0;
+}
+
+/* Pokemon Grid */
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.pokemon-grid .pokemon-card {
+  margin: 0;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.pokemon-grid .pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   🎯 BONUS-AUFGABEN - Füge hier CSS hinzu!
+   ======================================== */
+
+/* 🎯 AUFGABE 14: Hover-Effekt für Card
+   Hint: Kopiere diesen Code und füge ihn hier ein:
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+*/
+
+/* 🎯 AUFGABE 17: Fähigkeiten-Badges stylen
+   Hint: Kopiere diesen Code (nur wenn du Aufgabe 3 gemacht hast):
+
+.ability-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: #95a5a6;
+  color: white;
+  font-weight: bold;
+  margin: 5px;
+  font-size: 0.9rem;
+}
+
+   Dann probiere verschiedene Farben: #e67e22, #3498db, #2ecc71
+*/
+
+/* 🎯 AUFGABE 18: Pokemon-Bilder nebeneinander
+   Hint: Kopiere diesen Code (nur wenn du mehrere Bilder hast):
+
+.pokemon-images {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+   Dann wickle in PokemonCard.js alle <img> in <div className="pokemon-images">
+*/
+
+/* 🎯 AUFGABE 19: Pokemon-ID stylen
+   Hint: Kopiere diesen Code (nur wenn du Aufgabe 1 gemacht hast):
+
+.pokemon-id {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+   Probiere verschiedene Farben und Größen!
+*/
+
+/* 🎯 AUFGABE 16: Grid-Layout ändern
+   Hint: Suche oben nach .pokemon-grid und ändere:
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+   
+   - 250px zu 350px = weniger Cards nebeneinander
+   - 250px zu 180px = mehr Cards nebeneinander
+*/
+
+/* 🎯 AUFGABE 20: Titel-Animation anpassen
+   Hint: Suche oben nach @keyframes bounce und ändere:
+   transform: translateY(-10px);
+   
+   - -20px = höher springen
+   - -5px = weniger springen
+*/
+
+.pokemon-grid .pokemon-name {
+  font-size: 1.8rem;
+}
+
+.pokemon-grid .pokemon-image {
+  width: 150px;
+  height: 150px;
 }
