@@ -39,7 +39,24 @@ src/
 
 ---
 
-## 📚 Lern-Aufgaben für Jugendliche
+## 🎯 HAUPTAUFGABE: Pokemon Detail-Seite (Fortgeschritten)
+
+**📄 Siehe: [AUFGABE_REACT_ROUTER.md](AUFGABE_REACT_ROUTER.md)**
+
+Wenn du die Basis-Aufgaben unten gemeistert hast, versuche die **Hauptaufgabe**:
+
+- Erstelle eine Detail-Seite für jedes Pokemon
+- Nutze **React Router** für Navigation
+- Wenn man auf ein Pokemon klickt → Detail-Seite öffnet sich
+- Zeige mehr Infos, Bilder und Stats
+
+**Schwierigkeit:** ⭐⭐⭐⭐ (Fortgeschritten)
+**Zeit:** 2-3 Stunden
+**Was du lernst:** React Router, URL-Parameter, Navigation, Fetch API
+
+---
+
+## 📚 Basis-Aufgaben für Jugendliche
 
 **🎯 Was ist schon fertig?**
 
@@ -64,14 +81,14 @@ src/
 
 **Was machen?** Zeige die Nummer des Pokemon auf der Card an (z.B. "#25" für Pikachu).
 
-**Hint:**
+**Hints:**
 
 - Öffne `components/PokemonCard.js`
-- Füge unter dem `<h2 className="pokemon-name">` diese Zeile ein:
-
-```javascript
-<p className="pokemon-id">#{pokemon.id}</p>
-```
+- Füge unter dem `<h2 className="pokemon-name">` ein neues Element ein
+- Nutze ein `<p>` Tag mit className="pokemon-id"
+- Die ID liegt in: `pokemon.___` (welche Eigenschaft?)
+- Zeige das # Symbol vor der ID: `#` + die Zahl
+- Tipp: Schau wie der Name angezeigt wird: `{pokemon.name}`
 
 ---
 
@@ -79,15 +96,13 @@ src/
 
 **Was machen?** Zeige die Basis-Erfahrung (base_experience) des Pokemon an.
 
-**Hint:**
+**Hints:**
 
-- In `components/PokemonCard.js` bei den anderen `<p>` Tags (Größe, Gewicht) einfügen:
-
-```javascript
-<p>
-  <strong>Basis-Erfahrung:</strong> {pokemon.base_experience}
-</p>
-```
+- In `components/PokemonCard.js` bei den anderen `<p>` Tags (Größe, Gewicht)
+- Kopiere eine Zeile von Größe oder Gewicht und ändere sie
+- Ändere den Text zu: "Basis-Erfahrung:"
+- Die Eigenschaft heißt: `pokemon.base_experience`
+- Struktur: `<p><strong>Label:</strong> {pokemon.___}</p>`
 
 ---
 
@@ -95,20 +110,16 @@ src/
 
 **Was machen?** Zeige alle Fähigkeiten (abilities) des Pokemon an.
 
-**Hint:**
+**Hints:**
 
-- In `components/PokemonCard.js` nach den Typen einfügen:
-
-```javascript
-<div className="pokemon-abilities">
-  <strong>Fähigkeiten:</strong>
-  {pokemon.abilities.map((ability, index) => (
-    <span key={index} className="ability-badge">
-      {ability.ability.name}
-    </span>
-  ))}
-</div>
-```
+- In `components/PokemonCard.js` nach den Typen (pokemon-types)
+- 🤔 Frage: Ist das ähnlich wie Typen anzeigen?
+- Kopiere den Code von `pokemon-types` und ändere:
+  - className von "pokemon-types" → "pokemon-abilities"
+  - Array von `pokemon.types` → `pokemon.___` (welches?)
+  - Badge-Klasse von "type-badge" → "ability-badge"
+  - Der Name liegt verschachtelt: `ability.ability.name`
+- Tipp: Schau dir die Typen-Anzeige genau an und passe sie an!
 
 ---
 
@@ -116,15 +127,14 @@ src/
 
 **Was machen?** Zeige an, wie viele Attacken das Pokemon lernen kann.
 
-**Hint:**
+**Hints:**
 
-- In `components/PokemonCard.js` einfach diese Zeile kopieren:
-
-```javascript
-<p>
-  <strong>Attacken:</strong> Kann {pokemon.moves.length} Attacken lernen
-</p>
-```
+- In `components/PokemonCard.js` bei den anderen `<p>` Tags
+- Erstelle ein `<p>` Tag mit dem Label "Attacken:"
+- Die Attacken liegen in einem Array: `pokemon.moves`
+- 🤔 Wie zeigt man die LÄNGE eines Arrays in JavaScript?
+- Tipp: Arrays haben eine Eigenschaft die die Anzahl anzeigt
+- Zeige: "Kann \_\_\_ Attacken lernen" (fülle die Lücke!)
 
 ---
 
@@ -132,17 +142,16 @@ src/
 
 **Was machen?** Zeige auch das Bild von der Rückseite des Pokemon.
 
-**Hint:**
+**Hints:**
 
-- In `components/PokemonCard.js` unter dem ersten `<img>` Tag einfügen:
+- In `components/PokemonCard.js` unter dem ersten `<img>` Tag
+- Kopiere das vorhandene `<img>` Tag und ändere nur den `src`
+- Das erste Bild nutzt: `pokemon.sprites.front_default`
+- Das Rückseiten-Bild heißt: `pokemon.sprites.back_____` (was kommt nach back?)
+- Ändere auch das `alt` Attribut zu einem passenden Text
+- Behalte className="pokemon-image"
 
-```javascript
-<img
-  src={pokemon.sprites.back_default}
-  alt={`${pokemon.name} hinten`}
-  className="pokemon-image"
-/>
-```
+````
 
 ---
 
@@ -150,19 +159,18 @@ src/
 
 **Was machen?** Zeige die glitzernde (shiny) Version des Pokemon.
 
-**Hint:**
+**Hints:**
 
-- In `components/PokemonCard.js` noch ein `<img>` Tag hinzufügen:
+- In `components/PokemonCard.js` noch ein `<img>` Tag hinzufügen
+- Struktur ist genau wie bei Aufgabe 5
+- Das Shiny-Bild heißt: `pokemon.sprites.front_____` (glitzernd auf Englisch?)
+- Tipp: "shiny" bedeutet glitzernd!
+- Vergiss nicht das `alt` Attribut anzupassen
 
-```javascript
-<img
-  src={pokemon.sprites.front_shiny}
-  alt={`${pokemon.name} shiny`}
-  className="pokemon-image"
-/>
-```
-
-**Tipp:** Um Bilder nebeneinander zu zeigen, wickle alle `<img>` Tags in ein `<div className="pokemon-images">` ein!
+**💡 Bonus-Tipp:** Um alle Bilder nebeneinander zu zeigen:
+- Wickle alle `<img>` Tags in ein `<div>` ein
+- Nutze className="pokemon-images"
+- Das CSS ist schon fertig in App.css!
 
 ---
 
@@ -170,13 +178,19 @@ src/
 
 Öffne die Datei `App.css` für alle Aufgaben in Teil 2!
 
+#### Aufgabe 7: Hintergrund-Farbverlauf ändern
+
 **Was machen?** Ändere den Hintergrund-Farbverlauf der App!
 
-**Hint:**
+**Hints:**
 
 - Datei: `App.css` → Suche nach `.App` und `linear-gradient`
-- Ändere die Farben: z.B. `#ff6b6b`, `#4ecdc4`, `#95e1d3`
 - Du brauchst 2 Farben für den Verlauf
+- Gute Farbkombinationen:
+  - Rot zu Orange: `#ff6b6b`, `#ee5a6f`
+  - Blau zu Türkis: `#4ecdc4`, `#556270`
+  - Grün zu Gelb: `#95e1d3`, `#f1c40f`
+- Struktur: `background: linear-gradient(Farbe1, Farbe2);`
 
 ---
 
@@ -257,16 +271,14 @@ src/
 
 **Was machen?** Lass die Pokemon-Card wachsen wenn man mit der Maus drüber geht.
 
-**Hint:**
+**Hints:**
 
-- Datei: `App.css` → Füge am Ende hinzu:
-
-```css
-.pokemon-card:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s;
-}
-```
+- Datei: `App.css` → Füge am Ende eine neue CSS-Regel hinzu
+- Nutze einen `:hover` Selektor: `.pokemon-card:hover { ... }`
+- Eigenschaften die du brauchst:
+  - `transform: scale(___)` - Werte > 1.0 machen größer (probiere 1.05 oder 1.1)
+  - `transition: transform ___s` - Wie lange die Animation dauert (z.B. 0.3s)
+- 💡 Tipp: `:hover` wird aktiviert wenn die Maus drüber ist!`
 
 ---
 
@@ -274,11 +286,16 @@ src/
 
 **Was machen?** Gib dem Pokemon-Namen einen coolen Schatten-Effekt!
 
-**Hint:**
+**Hints:**
 
-- Datei: `App.css` → `.pokemon-name`
-- Füge hinzu: `text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);`
-- Spiele mit den Werten!
+- Datei: `App.css` → Suche nach `.pokemon-name`
+- Die CSS-Eigenschaft heißt: `text-shadow`
+- Struktur: `text-shadow: X Y Blur Farbe;`
+  - X = horizontale Verschiebung (z.B. 3px)
+  - Y = vertikale Verschiebung (z.B. 3px)
+  - Blur = Unschärfe (z.B. 6px)
+  - Farbe = rgba(0, 0, 0, 0.3) für halbtransparent schwarz
+- Probiere verschiedene Werte aus!
 
 ---
 
@@ -296,34 +313,42 @@ src/
   - Größere Zahl (z.B. `350px`) = weniger Cards nebeneinander
   - Kleinere Zahl (z.B. `200px`) = mehr Cards nebeneinander
 
----7: Fähigkeiten-Badges stylen (CSS)
+---
+
+#### Aufgabe 17: Fähigkeiten-Badges stylen (CSS)
 
 **Was machen?** Style die Fähigkeiten-Badges (falls du Aufgabe 3 gemacht hast).
 
-**Hint:**
+**Hints:**
 
-- Datei: `App.css` → Füge am Ende hinzu:
+- Datei: `App.css` → Füge am Ende eine neue CSS-Klasse hinzu
+- Klassenname: `.ability-badge`
+- Eigenschaften die du brauchst:
+  - `background` oder `background-color` (wähle eine Farbe!)
+  - `color` für die Textfarbe
+  - `padding` für Abstand innen (z.B. 8px 16px)
+  - `border-radius` für runde Ecken
+  - `margin` für Abstand zwischen Badges (z.B. 5px)
+  - `display: inline-block` damit sie nebeneinander sind
+- 💡 Tipp: Schau dir `.type-badge` an und passe es an!
 
-````css
-.ability-badge {
+---
+
 #### Aufgabe 18: Pokemon-Bilder nebeneinander (CSS)
 
 **Was machen?** Wenn du mehrere Bilder hinzugefügt hast (Aufgabe 5 & 6), zeige sie nebeneinander.
 
-**Hint:**
+**Hints:**
 
-- Datei: `App.css` → Füge hinzu:
-
-```css
-.pokemon-images {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-````
-
-- Wickle dann in `PokemonCard.js` alle `<img>` Tags in ein `<div className="pokemon-images">` ein
+- Datei: `App.css` → Füge eine neue CSS-Klasse hinzu
+- Klassenname: `.pokemon-images`
+- Du brauchst CSS Flexbox:
+  - `display: ____` (welcher Wert für Flexbox?)
+  - `gap: ____` (Abstand zwischen Bildern, z.B. 10px)
+  - `justify-content: ____` (zentrieren!)
+  - `flex-wrap: wrap` (damit Bilder umbrechen können)
+- Dann in `PokemonCard.js`: Wickle alle `<img>` Tags in `<div className="pokemon-images">`
+- 💡 Tipp: Google "CSS Flexbox" wenn du nicht weiter weißt!
 
 ---
 
@@ -331,16 +356,14 @@ src/
 
 **Was machen?** Mach die Pokemon-ID (#25) größer und in einer anderen Farbe.
 
-**Hint:**
+**Hints:**
 
-- Datei: `App.css` → Füge hinzu:
-
-```css
-.pokemon-id {
-  font-size: 1.5rem;
-  color: #7f8c8d;
-  font-weight: bold;
-}
+- Datei: `App.css` → Füge eine neue CSS-Klasse hinzu
+- Klassenname: `.pokemon-id`
+- Eigenschaften:
+  - `font-size: ____` (größer als normal! Probiere: 1.5rem oder 24px)
+  - `color: ____` (wähle eine Farbe! z.B. #7f8c8d ist grau)
+  - `font-weight: ____` (bold für fett!)
 ```
 
 ---
@@ -367,23 +390,16 @@ src/
 
 **Wo bearbeite ich was?**
 
-- **Aufgaben 1-6:** Datei `components/PokemonCard.js` (HTML/JSX Code kopieren)
-- **Aufgaben 7-20:** Datei `App.css` (CSS-Werte ändern)
-- Datei: `App.css` → Füge hinzu:
-
-````css
-.pokemon-image:hover {
-  transform: rotate(15deg) scale(1.1);
-  transition: 0.3s;
-}
-```Aufgaben 1-6:** Datei `components/PokemonCard.js` (HTML/JSX Code kopieren)
+- **Aufgaben 1-6:** Datei `components/PokemonCard.js` (HTML/JSX Code)
 - **Aufgaben 7-20:** Datei `App.css` (CSS-Werte ändern)
 
 **Brauchst du Hilfe?**
 
-- Alle Code-Beispiele sind fertig zum Kopieren!
+- Die Aufgaben geben dir Hints und halbe Lösungen
 - Bei CSS: Probiere verschiedene Werte aus und schau was passiert!
 - F5 drücken um die Seite neu zu laden und Änderungen zu sehen
+
+**Welche Pokemon kann ich suchen?**
 
 - Alle Pokemon-Namen auf Englisch (kleingeschrieben)
 - Beispiele: pikachu, charizard, bulbasaur, mewtwo, eevee, squirtle, charmander

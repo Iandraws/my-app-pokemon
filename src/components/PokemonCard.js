@@ -6,8 +6,14 @@ function PokemonCard({ pokemon }) {
       <h2 className="pokemon-name">{pokemon.name}</h2>
 
       {/* 🎯 AUFGABE 1: Pokemon-ID anzeigen
-          Hint: Füge hier ein <p> Tag ein mit: #{pokemon.id}
-          Beispiel: <p className="pokemon-id">#{pokemon.id}</p>
+          📝 Was du machen sollst: Zeige die Pokemon-Nummer (z.B. #25)
+          
+          Hints:
+          - Nutze ein <p> Tag
+          - className sollte sein: "pokemon-id"
+          - Zeige ein # Symbol vor der Nummer
+          - Die ID liegt in: pokemon.___ (welche Eigenschaft?)
+          - Schau wie der Name oben angezeigt wird!
       */}
 
       <img
@@ -17,10 +23,16 @@ function PokemonCard({ pokemon }) {
       />
 
       {/* 🎯 AUFGABE 5 & 6: Mehr Bilder anzeigen
-          Hint: Füge hier weitere <img> Tags ein für:
-          - Rückseite: pokemon.sprites.back_default
-          - Shiny: pokemon.sprites.front_shiny
-          Beispiel: <img src={pokemon.sprites.back_default} alt={pokemon.name + " back"} className="pokemon-image" />
+          📝 Was du machen sollst: Zeige Rückseite und Shiny-Version
+          
+          Hints:
+          - Kopiere das <img> Tag von oben
+          - Ändere nur den src Wert:
+            - Rückseite: pokemon.sprites.back_____ (?
+            - Shiny: pokemon.sprites.front_____ (glitzernd auf Englisch?)
+          - Passe das alt Attribut an (z.B. "hinten" oder "shiny")
+          
+          💡 Bonus: Wickle alle Bilder in <div className="pokemon-images"> für Layout!
       */}
 
       <div className="pokemon-info">
@@ -32,13 +44,24 @@ function PokemonCard({ pokemon }) {
         </p>
 
         {/* 🎯 AUFGABE 2: Basis-Erfahrung anzeigen
-            Hint: Kopiere die Zeile oben und ändere sie zu:
-            <p><strong>Basis-Erfahrung:</strong> {pokemon.base_experience}</p>
+            📝 Was du machen sollst: Zeige base_experience an
+            
+            Hints:
+            - Kopiere eine <p> Zeile von oben (Größe oder Gewicht)
+            - Ändere den Text zu "Basis-Erfahrung:"
+            - Die Eigenschaft heißt: pokemon.base_experience
+            - Struktur: <p><strong>Label</strong> {pokemon.___}</p>
         */}
 
         {/* 🎯 AUFGABE 4: Anzahl der Attacken anzeigen
-            Hint: Füge hier ein:
-            <p><strong>Attacken:</strong> Kann {pokemon.moves.length} Attacken lernen</p>
+            📝 Was du machen sollst: Zeige wie viele Attacken das Pokemon kann
+            
+            Hints:
+            - Erstelle ein <p> Tag wie bei den anderen Infos
+            - pokemon.moves ist ein Array mit allen Attacken
+            - Frage: Wie bekommt man die LÄNGE eines Arrays?
+            - Tipp: Arrays haben eine .length Eigenschaft!
+            - Text: "Kann ___ Attacken lernen" (fülle die Lücke)
         */}
 
         <div className="pokemon-types">
@@ -51,21 +74,20 @@ function PokemonCard({ pokemon }) {
         </div>
 
         {/* 🎯 AUFGABE 3: Fähigkeiten anzeigen
-            Hint: Kopiere den Code von pokemon-types oben und ändere:
-            - className zu "pokemon-abilities"
-            - pokemon.types zu pokemon.abilities
-            - type.type.name zu ability.ability.name
-            - className="type-badge" zu className="ability-badge"
+            📝 Was du machen sollst: Zeige alle abilities
             
-            Beispiel:
-            <div className="pokemon-abilities">
-              <strong>Fähigkeiten:</strong>
-              {pokemon.abilities.map((ability, index) => (
-                <span key={index} className="ability-badge">
-                  {ability.ability.name}
-                </span>
-              ))}
-            </div>
+            Hints:
+            - 🤔 Ist das ähnlich wie die Typen oben?
+            - Kopiere den kompletten pokemon-types <div> Block
+            - Ändere diese Dinge:
+              1. className von "pokemon-types" → "pokemon-______" (abilities!)
+              2. Text von "Typen:" → "Fähigkeiten:"
+              3. Array von pokemon.types → pokemon.______
+              4. Variable name von "type" → "ability"
+              5. Badge className von "type-badge" → "ability-badge"
+              6. Der Name liegt verschachtelt: ability.ability.name
+            
+            💡 Tipp: Vergleiche Schritt für Schritt mit dem Typen-Code!
         */}
       </div>
     </div>

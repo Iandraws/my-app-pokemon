@@ -355,6 +355,209 @@
    - -5px = weniger springen
 */
 
+/* ========================================
+   🚀 REACT ROUTER AUFGABE - Detail-Seite
+   ======================================== */
+
+/* Detail Page Container */
+.detail-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* 🎯 AUFGABE: Style den Zurück-Button
+   Hint: Ändere Farben, padding, border-radius
+*/
+.back-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: white;
+  color: #333;
+  text-decoration: none;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.back-button:hover {
+  background: #f0f0f0;
+  transform: translateX(-5px);
+}
+
+/* Pokemon Detail Container */
+.pokemon-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pokemon-detail h1 {
+  font-size: 3.5rem;
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.pokemon-detail .pokemon-id {
+  font-size: 2rem;
+  color: #7f8c8d;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* 🎯 AUFGABE: Style die Bilder-Galerie
+   Hint: Ändere gap, Größe, füge Hover-Effekte hinzu
+*/
+.pokemon-images {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.pokemon-images img {
+  width: 200px;
+  height: 200px;
+  transition: transform 0.3s;
+  border: 3px solid #ecf0f1;
+  border-radius: 10px;
+}
+
+.pokemon-images img:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Pokemon Info Section */
+.pokemon-info {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.pokemon-info h2 {
+  font-size: 2rem;
+  color: #333;
+  margin: 20px 0;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.pokemon-info p {
+  font-size: 1.3rem;
+  margin: 15px 0;
+  color: #555;
+}
+
+/* 🎯 AUFGABE: Style die Stats/Statistiken
+   Hint: Erstelle eine schöne Balken-Anzeige
+*/
+.pokemon-stats {
+  margin-top: 30px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.stat-name {
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #333;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  color: #667eea;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* 🎯 BONUS-AUFGABE: Stat-Bars (Balken-Anzeige)
+   Hint: Füge einen farbigen Balken hinzu der die Stärke zeigt
+   
+.stat-bar {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.5s;
+}
+*/
+
+/* Card Link Styling (für HomePage) */
+.pokemon-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.pokemon-card-link:hover .pokemon-card {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 🎯 BONUS-AUFGABE: Navigation Buttons (Vorheriges/Nächstes)
+   Hint: Style die Navigation zwischen Pokemon
+   
+.pokemon-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 20px;
+}
+
+.nav-button {
+  padding: 15px 30px;
+  background: #667eea;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.nav-button:hover {
+  background: #764ba2;
+  transform: translateY(-3px);
+}
+*/
+
+/* Responsive Design für Detail-Seite */
+@media (max-width: 768px) {
+  .pokemon-detail h1 {
+    font-size: 2.5rem;
+  }
+
+  .pokemon-images img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .pokemon-detail {
+    padding: 20px;
+  }
+}
+
 .pokemon-grid .pokemon-name {
   font-size: 1.8rem;
 }
