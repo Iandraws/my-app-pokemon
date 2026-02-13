@@ -204,9 +204,10 @@
   font-weight: bold;
   text-transform: uppercase;
   font-size: 0.9rem;
-}
+
 
 /* Pokemon Typ-Farben */
+
 .fire {
   background-color: #f08030;
 }
@@ -260,6 +261,7 @@
 }
 .steel {
   background-color: #b8b8d0;
+}
 }
 
 /* Pokemon Grid */
