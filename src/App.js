@@ -17,7 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Beim Start: Lade die ersten 20 Pokemon
+  // Beim Start: Lade die ersten 20 Pokemon und zeige sie in einem Grid an
   useEffect(() => {
     const loadInitialPokemon = async () => {
       setLoading(true);
