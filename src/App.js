@@ -12,6 +12,19 @@ import ErrorMessage from "./components/ErrorMessage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
 
 
+  // Beim Start: Lade die ersten 20 Pokemon und zeige sie in einem Grid an
+  useEffect(() => {
+    const loadInitialPokemon = async () => {
+      setLoading(true);
+      try {
+        const list = await fetchPokemonList(20);
+        setPokemonList(list);
+      } catch (err) {
+        setError("Konnte Pokemon-Liste nicht laden");
+      } finally {
+        setLoading(false);
+      }
+    };
 
 import { fetchPokemonData, fetchPokemonList } from "./services/pokemonService";
 
