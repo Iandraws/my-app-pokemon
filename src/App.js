@@ -10,6 +10,7 @@ import ErrorMessage from "./components/ErrorMessage";
 
 // Services
 import { fetchPokemonData, fetchPokemonList } from "./services/pokemonService";
+console.log("Test");
 
 function App() {
   const [pokemon, setPokemon] = useState(null);
