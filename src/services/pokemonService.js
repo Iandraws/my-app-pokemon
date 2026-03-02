@@ -37,6 +37,7 @@ export const fetchRandomPokemon = async () => {
 export const fetchPokemonList = async (limit = 20) => {
   const response = await fetch(`${BASE_URL}/pokemon?limit=${limit}`);
   const data = await response.json();
+  console.log (data)
 
   // Für jedes Pokemon die Details holen
   const pokemonDetails = await Promise.all(

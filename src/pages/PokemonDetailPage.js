@@ -1,39 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchPokemonData } from "../services/pokemonService";
 
 function PokemonDetailPage() {
-  const { name } = useParams(); // Holt den Pokemon-Namen aus der URL
+  const { name } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(false);
+  const imageRef = useRef(null);
 
+  
   useEffect(() => {
     const loadPokemonDetail = async () => {
       setLoading(true);
-
       try {
-        // 🎯 DEINE AUFGABE: Implementiere den Fetch-Call
-        // Frage 1: Welche Funktion holt ein einzelnes Pokemon? (Schau im Import!)
-        // Frage 2: Was braucht diese Funktion als Parameter?
-        // Frage 3: Wie speichert man das Ergebnis? (Welcher State?)
-        //
-        // 📝 Schritte:
-        // 1. Rufe die richtige Service-Funktion auf
-        // 2. Vergiss nicht "await" (warum ist das wichtig?)
-        // 3. Speichere das Ergebnis in einer Variable
-        // 4. Setze den State mit dem Ergebnis
+        const data = await fetchPokemonData(name);
+        setPokemon(data);
       } catch (error) {
         console.error("Fehler beim Laden:", error);
-      } finally {
-        setLoading(false);
+        setPokemon(null);
       }
+      setLoading(false);
     };
-
     loadPokemonDetail();
-  }, [name]); // Neu laden wenn sich der Name ändert
+  }, [name]);
+
+
+  const openFullscreen = (imgElement) => {
+    if (imgElement.requestFullscreen) {
+      imgElement.requestFullscreen();
+    } else if (imgElement.webkitRequestFullscreen) {
+      imgElement.webkitRequestFullscreen(); 
+    } else if (imgElement.msRequestFullscreen) {
+      imgElement.msRequestFullscreen(); 
+    }
+  };
 
   if (loading) return <div className="loading">Lädt {name}...</div>;
-  if (!pokemon) return <div className="error">Pokemon nicht gefunden!</div>;
+  if (!pokemon) return <div>Pokemon nicht gefunden!</div>;
 
   return (
     <div className="detail-page">
@@ -42,100 +45,62 @@ function PokemonDetailPage() {
       </Link>
 
       <div className="pokemon-detail">
-        <h1>{pokemon.name}</h1>
+        <h1>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h1>
         <p className="pokemon-id">#{pokemon.id}</p>
 
         <div className="pokemon-images">
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-
-          {/* 🎯 AUFGABE 1: Zeige mehr Bilder
-              Frage: Welche Bilder gibt es noch im sprites-Objekt?
-              
-              💡 Tipp: Schau in der Browser-Konsole (F12):
-              - console.log(pokemon.sprites)
-              
-              Dann füge weitere <img> Tags hinzu für:
-              - Rückseite des Pokemon
-              - Shiny-Version (glitzernd)
-              
-              Denk dran: Jedes <img> braucht src und alt!
-          */}
+          <img
+            src={pokemon.sprites.front_default}
+            alt={pokemon.name}
+            onClick={(e) => openFullscreen(e.target)}
+          />
+          <img
+            src={pokemon.sprites.back_default}
+            alt={pokemon.name + " back"}
+            onClick={(e) => openFullscreen(e.target)}
+          />
+          <img
+            src={pokemon.sprites.front_shiny}
+            alt={pokemon.name + " shiny"}
+            onClick={(e) => openFullscreen(e.target)}
+          />
         </div>
 
         <div className="pokemon-info">
-          <h2>Basis-Informationen</h2>
+          <p><strong>Größe:</strong> {pokemon.height / 10} m</p>
+          <p><strong>Gewicht:</strong> {pokemon.weight / 10} kg</p>
+          <p><strong>Basis-Erfahrung:</strong> {pokemon.base_experience}</p>
+
           <p>
-            <strong>Größe:</strong> {pokemon.height / 10} m
+            <strong>Typen:</strong>{" "}
+            {pokemon.types.map((typeObj) => {
+              const typeName = typeObj.type.name;
+              return (
+                <span key={typeName} className={`pokemon-type type-${typeName}`}>
+                  {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+                </span>
+              );
+            })}
           </p>
+
           <p>
-            <strong>Gewicht:</strong> {pokemon.weight / 10} kg
+            <strong>Fähigkeiten:</strong>{" "}
+            {pokemon.abilities.map((ability) => ability.ability.name).join(", ")}
           </p>
 
-          {/* 🎯 AUFGABE 2: Typen anzeigen
-              Frage: Wie hast du die Typen auf der HomePage angezeigt?
-              
-              Schritt 1: Erstelle ein <div> mit className "pokemon-types"
-              Schritt 2: Nutze .map() um durch pokemon.types zu loopen
-              Schritt 3: Für jeden Typ: erstelle einen <span> mit der type-badge Klasse
-              
-              ❓ Was ist pokemon.types? (Array oder Objekt?)
-              ❓ Was muss bei .map() in die Klammern?
-              ❓ Vergiss nicht: key={index} für React!
-          */}
+          <p><strong>Anzahl Attacken:</strong> {pokemon.moves.length}</p>
 
-          {/* 🎯 AUFGABE 3: Fähigkeiten anzeigen
-              💭 Denke nach: Ist das ähnlich wie Typen oder ganz anders?
-              
-              Unterschiede zu Typen:
-              - Die Daten liegen in pokemon.abilities
-              - Der Name liegt in ability.ability.name (verschachtelt!)
-              - Du könntest className="ability-badge" nutzen (statt type-badge)
-              
-              Probiere es selbst! Es ist fast wie Aufgabe 2.
-          */}
-
-          {/* 🎯 AUFGABE 4: Stats/Statistiken anzeigen
-              Was sind Stats? HP, Attack, Defense, Speed usw.
-              
-              🔍 Erforsche zuerst:
-              - console.log(pokemon.stats) in der Browser-Konsole
-              - Welche Struktur haben die Daten?
-              - Wo liegt der Name des Stats?
-              - Wo liegt der Wert?
-              
-              📝 Dann baue:
-              - Ein <div> Container mit Überschrift "Statistiken"
-              - Loope durch pokemon.stats mit .map()
-              - Zeige stat.stat.name und stat.base_stat
-              
-              💡 Es gibt CSS-Klassen: .pokemon-stats, .stat-item, .stat-name, .stat-value
-          */}
-
-          {/* 🎯 AUFGABE 5: Anzahl der Moves/Attacken
-              🤔 Frage: Wie zeigt man die LÄNGE eines Arrays?
-              
-              Tipp: pokemon.moves ist ein Array
-              Was du brauchst: Eine Array-Eigenschaft die die Anzahl zeigt
-              
-              Erstelle ein <p> Tag mit der Anzahl!
-          */}
+          <div>
+            <strong>Stats:</strong>
+            <ul>
+              {pokemon.stats.map((stat) => (
+                <li key={stat.stat.name}>
+                  {stat.stat.name}: {stat.base_stat}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        {/* 🎯 BONUS-AUFGABE: Navigation zu vorherigem/nächstem Pokemon
-            💭 Überlege:
-            - Wie bekommst du die ID des vorherigen Pokemon? (Rechnen!)
-            - Wie bekommst du die ID des nächsten Pokemon?
-            - Was ist wenn Pokemon #1 angezeigt wird? (Gibt es #0?)
-            
-            Schritte:
-            1. Berechne prevId und nextId (mit + oder -)
-            2. Nutze <Link> Component (schon importiert!)
-            3. Link URL muss sein: /pokemon/ID_HIER
-            4. Für prevId: Zeige den Button nur wenn die ID > 0 ist
-               (Tipp: {BEDINGUNG && <Element>})
-            
-            CSS ist schon fertig: .pokemon-navigation und .nav-button
-        */}
       </div>
     </div>
   );
